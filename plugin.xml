@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
+    id="com.brightin.conversion"
+    version="0.1.0">
+
+    <name>Conversion</name>
+    <description>Plugin to help app developers track conversions using the Facebook API</description>
+    <license>Apache 2.0</license>
+    <keywords>cordova,plugin,conversion,facebook</keywords>
+
+    <js-module src="www/Conversion.js" name="Conversion">
+        <clobbers target="Conversion" />
+    </js-module>
+
+    <platform name="android">
+        <config-file target="res/xml/config.xml" parent="/*">
+            <feature name="Conversion" >
+                <param name="android-package" value="com.brightin.conversion.Conversion"/>
+                <param name="onload" value="true" />
+            </feature>
+        </config-file>
+
+        <source-file src="src/android/Conversion.java" target-dir="src/com/brightin/conversion" />
+    </platform>
+
+    <!-- ios -->
+    <platform name="ios">
+        <config-file target="config.xml" parent="/*">
+            <feature name="Conversion">
+                <param name="ios-package" value="Conversion"/>
+                <param name="onload" value="true" />
+            </feature>
+        </config-file>
+
+        <header-file src="src/ios/Conversion.h" />
+        <source-file src="src/ios/Conversion.m" />        
+    </platform>
+</plugin>
