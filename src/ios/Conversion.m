@@ -14,6 +14,7 @@
     }
 
     [FBSettings setDefaultAppID:app_id];
+    [FBSettings setLoggingBehavior:[NSSet setWithObjects:FBLoggingBehaviorAppEvents, nil]];
 }
 
 - (void)activateApp:(CDVInvokedUrlCommand*)command
@@ -24,12 +25,10 @@
         return;
     }
 
-    [self.commandDelegate runInBackground:^{
-        NSLog(@"Submitting activateApp facebook event");
-        [FBAppEvents activateApp];
-        CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
-        [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
-    }];
+    NSLog(@"Submitting activateApp facebook event");
+    [FBAppEvents activateApp];
+    CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
+    [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
 }
 
 - (void)logCustomEvent:(CDVInvokedUrlCommand *)command

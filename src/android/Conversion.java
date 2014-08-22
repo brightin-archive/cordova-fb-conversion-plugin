@@ -42,7 +42,7 @@ public class Conversion extends CordovaPlugin {
       return true;
     } else if (action.equals("activateApp")) {
       if (logger == null) {
-        callbackContext.error("activateApp must be called first before logEvent is used");
+        callbackContext.error("setAppID must be called first before activateApp is used");
         return true;
       }
 
@@ -51,6 +51,11 @@ public class Conversion extends CordovaPlugin {
       callbackContext.success();
       return true;
     } else if (action.equals("logCustomEvent")) {
+      if (logger == null) {
+        callbackContext.error("setAppID must be called first before logCustomEvent is used");
+        return true;
+      }
+
       if (args.length() == 0) {
         // Not enough parameters
         callbackContext.error("Invalid arguments");
@@ -61,6 +66,11 @@ public class Conversion extends CordovaPlugin {
         return true;
       }
     } else if (action.equals("registrationComplete")) {
+      if (logger == null) {
+        callbackContext.error("setAppID must be called first before registrationComplete is used");
+        return true;
+      }
+
       if (args.length() == 0) {
         // Not enough parameters
         callbackContext.error("Invalid arguments");
@@ -83,7 +93,6 @@ public class Conversion extends CordovaPlugin {
     } else {
       logger.logEvent(eventName, parameters);
     }
-    //Log.d("io.cordova.hellocordova", "Logged event '" + eventName + "'");
     return true;
   }
 }
