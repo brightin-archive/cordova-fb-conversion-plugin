@@ -9,7 +9,7 @@ Installing
 The plugin can be installed using the following command:
 
 ```sh
-$ cordova plugins install https://github.com/brightin/cordova-fb-conversion-plugin.git
+$ cordova plugin add https://github.com/brightin/cordova-fb-conversion-plugin.git
 ```
 
 
